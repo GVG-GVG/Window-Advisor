@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Advisor | Free Window Replacement Estimates</title>
+    <meta name="description" content="Get your free window replacement estimate in minutes. Licensed, insured window contractors near you. Energy savings, upgrades, replacements — no obligation quotes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============ RESET & BASE ============ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.6;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ============ VARIABLES ============ */
+        :root {
+            --primary: #1565C0;
+            --primary-dark: #0D47A1;
+            --primary-light: #42A5F5;
+            --accent: #FF6F00;
+            --accent-hover: #E65100;
+            --dark: #1a1a2e;
+            --gray-50: #f8f9fa;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-500: #6c757d;
+            --gray-700: #495057;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        /* ============ UTILITY ============ */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--gray-500);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 36px;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.35);
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 111, 0, 0.45);
+        }
+
+        /* ============ HEADER / NAV ============ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled { box-shadow: var(--shadow-md); }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+        }
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--primary-dark);
+            line-height: 1.1;
+        }
+        .logo-text span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-700);
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px !important;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--primary-dark) !important; color: var(--white) !important; }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1976D2 100%);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.08;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 32px;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+        .hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            padding: 8px 16px;
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .hero-badge svg { flex-shrink: 0; }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .hero-stat-value {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--white);
+        }
+        .hero-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 2px;
+        }
+
+        /* ============ LEAD FORM ============ */
+        .lead-form-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            box-shadow: var(--shadow-xl);
+        }
+        .lead-form-card h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        .lead-form-card .form-sub {
+            font-size: 14px;
+            color: var(--gray-500);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .form-trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .form-trust-badges span {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(21, 101, 192, 0.08);
+            padding: 4px 10px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: var(--gray-50);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+            background: var(--white);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            padding: 10px 0 2px;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 800;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.35);
+        }
+        .form-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 111, 0, 0.45);
+        }
+        .tcpa-disclosure {
+            font-size: 10px;
+            line-height: 1.4;
+            color: var(--gray-500);
+            margin-top: 8px;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+        .form-trust-micro {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .form-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        /* ============ TRUST BAR ============ */
+        .trust-bar {
+            background: var(--gray-50);
+            padding: 40px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .trust-bar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        .trust-item svg { color: var(--primary); flex-shrink: 0; }
+
+        /* ============ SERVICES ============ */
+        .services {
+            padding: 100px 0;
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .services-header .section-subtitle { margin: 0 auto; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.08), rgba(66, 165, 245, 0.12));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .service-icon svg { color: var(--primary); }
+        .service-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* ============ HOW IT WORKS ============ */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+        .how-header { text-align: center; margin-bottom: 60px; }
+        .how-header .section-subtitle { margin: 0 auto; }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 15px rgba(21, 101, 192, 0.3);
+        }
+        .step-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        .step-card p {
+            font-size: 14px;
+            color: var(--gray-500);
+            max-width: 280px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials {
+            padding: 100px 0;
+        }
+        .testimonials-header { text-align: center; margin-bottom: 60px; }
+        .testimonials-header .section-subtitle { margin: 0 auto; }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+        }
+        .testimonial-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 16px;
+        }
+        .testimonial-stars svg { color: #FBBF24; }
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .testimonial-location {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        /* ============ WHY CHOOSE US ============ */
+        .why-us {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%);
+            color: var(--white);
+        }
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .why-us-content .section-label { color: rgba(255,255,255,0.6); }
+        .why-us-content .section-title { color: var(--white); }
+        .why-us-content .section-subtitle { color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+        .why-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+        .why-list li svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: var(--accent);
+        }
+        .why-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .why-stat-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .why-stat-value {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+        }
+        .why-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 4px;
+        }
+
+        /* ============ FINAL CTA ============ */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .final-cta .section-subtitle { margin: 0 auto 36px; }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ============ STICKY MOBILE CTA ============ */
+        .sticky-mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            padding: 12px 16px;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+        .sticky-mobile-cta a {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.35);
+        }
+        @media (max-width: 768px) {
+            .sticky-mobile-cta { display: block; }
+            body { padding-bottom: 72px; }
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-top: 16px;
+        }
+        .footer h4 {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-links a {
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .lead-form-card { max-width: 480px; margin: 0 auto; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-us-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: none; }
+            .hero { padding: 80px 0 40px; min-height: auto; }
+            .hero-content h1 { font-size: 28px; margin-bottom: 12px; }
+            .hero-content p { font-size: 15px; margin-bottom: 16px; }
+            .hero-badges { margin-bottom: 16px; }
+            .hero-stats { display: none; }
+            .lead-form-card { padding: 24px 20px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; gap: 40px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .why-stats-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .form-row { grid-template-columns: 1fr; }
+            .hero-badges { flex-direction: column; }
+            .hero-stats { flex-direction: column; gap: 16px; }
+        }
+
+        /* ============ ANIMATIONS ============ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="42" height="42" rx="10" fill="#1565C0"/>
+                    <rect x="9" y="10" width="24" height="22" rx="2" fill="#fff" opacity="0.9"/>
+                    <line x1="21" y1="10" x2="21" y2="32" stroke="#1565C0" stroke-width="1.5"/>
+                    <line x1="9" y1="21" x2="33" y2="21" stroke="#1565C0" stroke-width="1.5"/>
+                    <rect x="12" y="13" width="7" height="6" rx="1" fill="#42A5F5" opacity="0.3"/>
+                    <rect x="23" y="13" width="7" height="6" rx="1" fill="#42A5F5" opacity="0.3"/>
+                    <rect x="12" y="23" width="7" height="6" rx="1" fill="#42A5F5" opacity="0.3"/>
+                    <rect x="23" y="23" width="7" height="6" rx="1" fill="#42A5F5" opacity="0.3"/>
+                </svg>
+                <div class="logo-text">Window<span>Advisor</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#get-estimate" class="nav-cta">Get Free Estimate</a></li>
+            </ul>
+            <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="get-estimate">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <div class="hero-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Licensed &amp; Insured
+                    </div>
+                    <div class="hero-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.9 Star Rating
+                    </div>
+                </div>
+                <h1>Your <span id="geoLocation"></span>Windows.<br>Our <span class="highlight">Expertise.</span><br>Zero Cost Estimates.</h1>
+                <p>Get a no-obligation window replacement estimate from vetted, local contractors in your area. Drafty windows, energy upgrades, full replacements — we connect you with the right pros fast.</p>
+                <div class="hero-stats">
+                    <div>
+                        <div class="hero-stat-value">12,000+</div>
+                        <div class="hero-stat-label">Homeowners Served</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">400+</div>
+                        <div class="hero-stat-label">Contractor Partners</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">98%</div>
+                        <div class="hero-stat-label">Satisfaction Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD FORM -->
+            <div class="lead-form-card" id="lead-form">
+                <h2>Get Your Free Estimate</h2>
+                <p class="form-sub">Takes less than 60 seconds</p>
+                <div class="form-trust-badges">
+                    <span>100% Free</span>
+                    <span>No Obligation</span>
+                    <span>Licensed Pros</span>
+                </div>
+                <form id="windowForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" id="zip" name="zip" placeholder="12345" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="homeowner">Are you the home owner?</label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="homeowner" value="yes" required> Yes</label>
+                            <label class="radio-label"><input type="radio" name="homeowner" value="no"> No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectType">Project Type</label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="projectType" value="replacement" required> Replace Windows</label>
+                            <label class="radio-label"><input type="radio" name="projectType" value="repair"> Repair Windows</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="windowCount">How many windows?</label>
+                        <select id="windowCount" name="windowCount" required>
+                            <option value="" disabled selected>Select...</option>
+                            <option value="1-3">1 – 3 Windows</option>
+                            <option value="4-6">4 – 6 Windows</option>
+                            <option value="7-10">7 – 10 Windows</option>
+                            <option value="11-15">11 – 15 Windows</option>
+                            <option value="16+">16+ Windows (Whole Home)</option>
+                        </select>
+                    </div>
+                    <p class="tcpa-disclosure">By clicking "Get My Free Estimate," you consent to being contacted by window-advisor.com and partners via calls, texts, and email at the number provided, including autodialed calls, even if on a Do Not Call list. Msg &amp; data rates may apply. Consent not required to purchase. Reply STOP to opt out.</p>
+                    <button type="submit" class="form-submit">Get My Free Estimate</button>
+                    <div class="form-trust-micro">
+                        <span>Trusted by 12,000+ homeowners</span>
+                    </div>
+                    <div class="form-trust">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        Your info is secure. No spam, ever.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ TRUST BAR ============ -->
+<section class="trust-bar">
+    <div class="container">
+        <div class="trust-bar-inner">
+            <div class="trust-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                Fully Licensed &amp; Insured
+            </div>
+            <div class="trust-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Response Within 24 Hours
+            </div>
+            <div class="trust-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                4.9 Average Rating
+            </div>
+            <div class="trust-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                12,000+ Homeowners Served
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="services-header fade-up">
+            <div class="section-label">Our Services</div>
+            <h2 class="section-title">Complete Window Solutions</h2>
+            <p class="section-subtitle">From single pane upgrades to whole-home replacements, we connect you with qualified contractors who handle every window need.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                </div>
+                <h3>Window Replacement</h3>
+                <p>Full window replacement with premium materials. Vinyl, wood, fiberglass, aluminum — matched to your budget, style, and climate.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3>Window Repair</h3>
+                <p>Foggy glass, broken seals, stuck sashes, hardware failures. Fast turnaround on repairs that restore function and prevent further damage.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </div>
+                <h3>Energy Efficient Windows</h3>
+                <p>Double-pane, triple-pane, Low-E glass, and argon-filled upgrades. Cut energy bills by up to 30% while increasing home comfort year-round.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 12.5C20 11 21 9.4 21 7.5 21 5 19 3 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2C5 3 3 5 3 7.5c0 1.9 1 3.5 2.5 5L12 19l6.5-6.5z"/></svg>
+                </div>
+                <h3>Storm &amp; Impact Windows</h3>
+                <p>Hurricane-rated and impact-resistant windows for maximum protection. Meet building codes and protect your family from severe weather and break-ins.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <h3>Window Inspection</h3>
+                <p>Professional inspections for home buyers, sellers, or regular maintenance. Detailed reports on seal integrity, frame condition, and energy performance.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3>Whole-Home Window Packages</h3>
+                <p>Complete window replacement for your entire home at bundled pricing. Consistent style, maximum energy savings, and a single project timeline.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="how-header fade-up">
+            <div class="section-label">How It Works</div>
+            <h2 class="section-title">Three Simple Steps</h2>
+            <p class="section-subtitle">From request to new windows — we make the process painless.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card fade-up">
+                <div class="step-number">1</div>
+                <h3>Submit Your Info</h3>
+                <p>Fill out the quick form above with your contact details and project type. Takes under 60 seconds.</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-number">2</div>
+                <h3>Get Matched</h3>
+                <p>We connect you with pre-vetted, licensed window contractors in your area who specialize in your project type.</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-number">3</div>
+                <h3>Compare &amp; Choose</h3>
+                <p>Receive competitive estimates, compare options, and pick the contractor that fits your budget and timeline.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <div class="testimonials-header fade-up">
+            <div class="section-label">Testimonials</div>
+            <h2 class="section-title">What Homeowners Say</h2>
+            <p class="section-subtitle">Real results from real homeowners who used our service.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-stars">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">"Our old single-pane windows were driving our energy bill through the roof. Got matched with a contractor who installed double-pane Low-E windows throughout. Energy bill dropped 35% the first month."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JM</div>
+                    <div>
+                        <div class="testimonial-name">Jennifer Martinez</div>
+                        <div class="testimonial-location">Dallas, TX</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-stars">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">"Hurricane season convinced us to upgrade to impact windows. Within 48 hours I had a licensed crew measuring and within two weeks every window was replaced. Insurance gave us a discount too."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">TN</div>
+                    <div>
+                        <div class="testimonial-name">Tom Nguyen</div>
+                        <div class="testimonial-location">Miami, FL</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-up">
+                <div class="testimonial-stars">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <p class="testimonial-text">"Needed to replace 14 windows before selling our house. Got three competitive bids within a week and the crew finished in three days. Home inspector had zero issues. Helped us close on time."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SK</div>
+                    <div>
+                        <div class="testimonial-name">Sarah Kim</div>
+                        <div class="testimonial-location">Phoenix, AZ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="why-us" id="why-us">
+    <div class="container">
+        <div class="why-us-grid">
+            <div class="why-us-content fade-up">
+                <div class="section-label">Why Choose Us</div>
+                <h2 class="section-title">Not All Estimate Services Are Equal</h2>
+                <p class="section-subtitle">We vet every contractor in our network so you don't have to gamble on who shows up.</p>
+                <ul class="why-list">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Every contractor is licensed, insured, and background-checked
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        No high-pressure sales — get honest estimates, then decide on your timeline
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Contractors compete for your business, keeping prices fair
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        100% free service with zero obligation — walk away anytime
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Energy efficiency specialists who know local rebates and tax credits inside and out
+                    </li>
+                </ul>
+            </div>
+            <div class="why-stats-grid fade-up">
+                <div class="why-stat-card">
+                    <div class="why-stat-value">12K+</div>
+                    <div class="why-stat-label">Estimates Delivered</div>
+                </div>
+                <div class="why-stat-card">
+                    <div class="why-stat-value">400+</div>
+                    <div class="why-stat-label">Vetted Contractors</div>
+                </div>
+                <div class="why-stat-card">
+                    <div class="why-stat-value">98%</div>
+                    <div class="why-stat-label">Customer Satisfaction</div>
+                </div>
+                <div class="why-stat-card">
+                    <div class="why-stat-value">24hr</div>
+                    <div class="why-stat-label">Average Response Time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+    <div class="container fade-up">
+        <div class="section-label">Ready to Get Started?</div>
+        <h2 class="section-title">Your New Windows Are One Click Away</h2>
+        <p class="section-subtitle">Stop overpaying on energy bills with drafty windows. Get matched with trusted, local contractors and receive your free estimate today.</p>
+        <div class="cta-buttons">
+            <a href="#get-estimate" class="btn btn-primary">Get My Free Estimate</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ STICKY MOBILE CTA ============ -->
+<div class="sticky-mobile-cta">
+    <a href="#get-estimate">Get My Free Estimate</a>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <svg class="logo-icon" width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="42" height="42" rx="10" fill="#1565C0"/>
+                        <rect x="9" y="10" width="24" height="22" rx="2" fill="#fff" opacity="0.9"/>
+                        <line x1="21" y1="10" x2="21" y2="32" stroke="#1565C0" stroke-width="1.5"/>
+                        <line x1="9" y1="21" x2="33" y2="21" stroke="#1565C0" stroke-width="1.5"/>
+                    </svg>
+                    <div class="logo-text" style="color:#fff;">Window<span>Advisor</span></div>
+                </a>
+                <p>Connecting homeowners with trusted, licensed window contractors for free, no-obligation estimates since 2024.</p>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Window Replacement</a></li>
+                    <li><a href="#services">Window Repair</a></li>
+                    <li><a href="#services">Energy Efficient Windows</a></li>
+                    <li><a href="#services">Storm &amp; Impact Windows</a></li>
+                    <li><a href="#services">Window Inspection</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Contractor Network</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/privacy-policy.html">Terms of Service</a></li>
+                    <li><a href="/privacy-policy.html">Cookie Policy</a></li>
+                    <li><a href="/privacy-policy.html">TCPA Disclosure</a></li>
+                    <li><a href="/do-not-sell.html">Do Not Sell My Personal Information</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Window-Advisor.com. All rights reserved.</span>
+            <span>window-advisor.com</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Scroll-triggered animations
+    window._fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => window._fadeObserver.observe(el));
+
+    // Phone auto-format
+    document.getElementById('phone').addEventListener('input', function(e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+
+    // Form submission
+    function handleSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('.form-submit');
+
+        btn.textContent = 'Submitting...';
+        btn.disabled = true;
+
+        // Simulate submission (replace with actual endpoint)
+        setTimeout(() => {
+            form.innerHTML = `
+                <div style="text-align:center; padding: 40px 0;">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+                    <h3 style="margin-top:16px; font-size:20px; color:#1a1a2e;">Thank You!</h3>
+                    <p style="margin-top:8px; font-size:14px; color:#6c757d; line-height:1.6;">Your estimate request has been received.<br>A window specialist will contact you within 24 hours.</p>
+                </div>
+            `;
+        }, 1500);
+    }
+
+    // Geo-location: detect visitor's state via IP — powers hero text + testimonials
+    (function() {
+        var geo = document.getElementById('geoLocation');
+        var stateTestimonials = {
+            'California': [
+                { name: 'Carlos Mendez', city: 'Los Angeles', abbr: 'CA', text: 'California energy costs are brutal. Got matched with a contractor who installed triple-pane windows throughout our home. AC bill dropped by a third the very first month.' },
+                { name: 'Lisa Tran', city: 'San Jose', abbr: 'CA', text: 'Our 1960s ranch had original aluminum windows that were impossible to keep clean. The contractor replaced all 16 with vinyl double-hung windows in just two days.' },
+                { name: 'James Park', city: 'Sacramento', abbr: 'CA', text: 'Central Valley heat was pouring through our old single-pane windows. Submitted my info Monday, had three quotes by Wednesday, and new Low-E windows installed by Friday.' }
+            ],
+            'Texas': [
+                { name: 'Jennifer Martinez', city: 'Dallas', abbr: 'TX', text: 'Our old single-pane windows were driving our energy bill through the roof. Got matched with a contractor who installed double-pane Low-E windows throughout. Energy bill dropped 35% the first month.' },
+                { name: 'Marcus Thompson', city: 'Houston', abbr: 'TX', text: 'Needed impact-rated windows after storm season. Within 48 hours I had a licensed crew measuring every opening. Two weeks later every window was upgraded and we qualified for an insurance discount.' },
+                { name: 'Robert Chen', city: 'San Antonio', abbr: 'TX', text: 'Texas heat was pouring through our old aluminum frames. Got matched with a local pro who installed energy-star rated vinyl windows at a price way below the big-box store quotes.' }
+            ],
+            'Florida': [
+                { name: 'Tom Nguyen', city: 'Miami', abbr: 'FL', text: 'Hurricane season convinced us to upgrade to impact windows. Within 48 hours I had a licensed crew measuring and within two weeks every window was replaced. Insurance gave us a discount too.' },
+                { name: 'Maria Santos', city: 'Tampa', abbr: 'FL', text: 'Needed windows that met new Florida wind code requirements. The contractor they matched me with knew the codes inside and out. Passed inspection on the first try.' },
+                { name: 'Karen Mitchell', city: 'Orlando', abbr: 'FL', text: 'Had been putting off replacing our foggy windows for two years. Submitted my info expecting a hassle and instead got a same-week measurement appointment with a great local company.' }
+            ],
+            'New York': [
+                { name: 'Anthony Russo', city: 'Brooklyn', abbr: 'NY', text: 'Finding a reliable window installer in the city felt impossible until I used this service. Got matched with a crew experienced with brownstone windows. Done in three days.' },
+                { name: 'Jennifer Kim', city: 'Buffalo', abbr: 'NY', text: 'Lake effect winters were brutal with our old windows. The contractor they found replaced everything with triple-pane and our heating bill dropped immediately.' },
+                { name: 'David Morales', city: 'Syracuse', abbr: 'NY', text: 'Our 1920s home needed custom-sized windows. They matched us with a contractor who sourced historically accurate styles. Neighbors were impressed with how they matched the original look.' }
+            ],
+            'Pennsylvania': [
+                { name: 'Brian Kowalski', city: 'Philadelphia', abbr: 'PA', text: 'Row home windows were drafty and driving up our heating costs. Got a contractor out within two days who replaced all 12 windows. House stays warm now even in January.' },
+                { name: 'Diane Harper', city: 'Pittsburgh', abbr: 'PA', text: 'Years of freeze-thaw cycles had cracked the seals on every window. The installer they matched us with replaced them all — no upsell, fair price, and spotless cleanup.' },
+                { name: 'Mark Stephens', city: 'Allentown', abbr: 'PA', text: 'Needed all windows replaced before selling our house. Got it done fast, under budget, and the home inspector had zero issues. Helped us close on time.' }
+            ],
+            'Illinois': [
+                { name: 'Terrence Washington', city: 'Chicago', abbr: 'IL', text: 'Chicago winters are brutal and our old windows were basically useless. Found a contractor through this service who installed triple-pane throughout. No more drafts, no more ice on the inside of the glass.' },
+                { name: 'Rachel Novak', city: 'Naperville', abbr: 'IL', text: 'Our energy audit flagged every window in the house. Got matched with a contractor who gave us a whole-home package deal that saved us thousands compared to individual quotes.' },
+                { name: 'Kevin Murphy', city: 'Springfield', abbr: 'IL', text: 'Got three quotes within a week. Every contractor was licensed and professional. Went with the mid-range bid and the work was flawless. Windows look and perform great.' }
+            ],
+            'Ohio': [
+                { name: 'Steve Patel', city: 'Columbus', abbr: 'OH', text: 'Our windows were 30 years old and fogged up on both sides. Got connected with a contractor who gave us an honest assessment and a fair price. New windows look incredible.' },
+                { name: 'Christine Bailey', city: 'Cleveland', abbr: 'OH', text: 'Lake Erie wind was coming right through our old windows. The installer they found replaced everything including the trim. Professional crew, clean job site every day.' },
+                { name: 'Jason Wright', city: 'Cincinnati', abbr: 'OH', text: 'Had a window that wouldn\'t lock and two with broken seals. The contractor they connected me with fixed everything in one visit. Fast, fair, and thorough.' }
+            ],
+            'Georgia': [
+                { name: 'Sarah Johnson', city: 'Atlanta', abbr: 'GA', text: 'The whole process took less than a week from submitting my info to having new windows installed. The contractor was professional, on time, and under budget.' },
+                { name: 'Marcus Brown', city: 'Savannah', abbr: 'GA', text: 'Humidity had rotted several window frames. The contractor found every problem spot, replaced the frames, and installed new energy-efficient windows. Solid work.' },
+                { name: 'Emily Davis', city: 'Augusta', abbr: 'GA', text: 'Needed storm-rated windows after a bad spring. Got matched with an installer who helped us qualify for a local energy rebate that covered 20% of the cost.' }
+            ],
+            'North Carolina': [
+                { name: 'Will Patterson', city: 'Charlotte', abbr: 'NC', text: 'Hail cracked two windows and I realized the rest were all single-pane. The contractor they matched me with gave us a great whole-home package price.' },
+                { name: 'Tammy Brooks', city: 'Raleigh', abbr: 'NC', text: 'We needed windows that could handle severe weather. Got connected with a crew that installed impact-rated glass and reinforced frames. Peace of mind.' },
+                { name: 'Derek Holmes', city: 'Wilmington', abbr: 'NC', text: 'Coastal salt air had corroded our old aluminum frames. Found a local contractor through this service who specializes in coastal installations. Five-star experience.' }
+            ],
+            'Michigan': [
+                { name: 'Dan Kowalczyk', city: 'Detroit', abbr: 'MI', text: 'Michigan winters destroy windows. Got matched with a contractor who replaced every window with triple-pane gas-filled units. Our furnace barely kicks on now compared to last year.' },
+                { name: 'Heather Grant', city: 'Grand Rapids', abbr: 'MI', text: 'Condensation between the panes on half our windows. The installer they found replaced them all and addressed the ventilation issues causing the moisture. Fixed for good.' },
+                { name: 'Paul Anderson', city: 'Ann Arbor', abbr: 'MI', text: 'Needed new windows before winter hit. Submitted my info in September and had brand new triple-pane windows throughout by mid-October. Tight timeline, but they made it happen.' }
+            ]
+        };
+
+        // Default testimonials (already in the HTML — Texas)
+        var defaultState = 'Texas';
+
+        function setGeoText(state) {
+            if (geo && state) {
+                geo.textContent = state + ' ';
+            }
+        }
+
+        function setTestimonials(state) {
+            var t = stateTestimonials[state];
+            if (!t) return;
+            var cards = document.querySelectorAll('.testimonial-card');
+            cards.forEach(function(card, i) {
+                if (!t[i]) return;
+                var textEl = card.querySelector('.testimonial-text');
+                var nameEl = card.querySelector('.testimonial-name');
+                var locEl = card.querySelector('.testimonial-location');
+                var avatarEl = card.querySelector('.testimonial-avatar');
+                if (textEl) textEl.textContent = '"' + t[i].text + '"';
+                if (nameEl) nameEl.textContent = t[i].name;
+                if (locEl) locEl.textContent = t[i].city + ', ' + t[i].abbr;
+                if (avatarEl) {
+                    var initials = t[i].name.split(' ').map(function(n){return n[0]}).join('');
+                    avatarEl.textContent = initials;
+                }
+            });
+        }
+
+        // Try multiple geolocation APIs
+        var apis = [
+            { url: 'https://ipapi.co/json/', parse: function(d){ return d.region; } },
+            { url: 'https://ipwho.is/', parse: function(d){ return d.region; } },
+            { url: 'https://freeipapi.com/api/json', parse: function(d){ return d.regionName; } }
+        ];
+
+        function tryApi(index) {
+            if (index >= apis.length) return;
+            fetch(apis[index].url)
+                .then(function(r){ return r.json(); })
+                .then(function(data){
+                    var state = apis[index].parse(data);
+                    if (state && stateTestimonials[state]) {
+                        setGeoText(state);
+                        setTestimonials(state);
+                    } else {
+                        tryApi(index + 1);
+                    }
+                })
+                .catch(function(){ tryApi(index + 1); });
+        }
+
+        tryApi(0);
+    })();
+</script>
+
+</body>
+</html>
